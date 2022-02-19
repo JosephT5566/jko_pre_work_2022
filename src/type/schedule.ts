@@ -1,12 +1,14 @@
 interface Team {
-	icon: string;
-	name: string;
+    icon: string
+    name: string
+    score: number
 }
 
 export interface Competition {
-	date: string;
-	place: string;
-	type: string;
-	home: Team;
-	away: Team;
+    gameId: string
+    date: string
+    place: string
+    type: string
+    home: Team
+    away: Team
 }
