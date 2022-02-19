@@ -90,12 +90,12 @@ export default function TimeTable({ schedule }: Props) {
                               <StyledTeam className={"home"}>
                                   <img src={com.home.icon} className={"icon"} />
                                   <p style={{ gridArea: "name" }}>{com.home.name}</p>
-                                  <p className={"score"}>{123}</p>
+                                  <p className={"score"}>{com.home.score}</p>
                               </StyledTeam>
                               <StyledTeam className={"away"}>
                                   <img src={com.away.icon} className={"icon"} />
                                   <p style={{ gridArea: "name" }}>{com.away.name}</p>
-                                  <p className={"score"}>{123}</p>
+                                  <p className={"score"}>{com.away.score}</p>
                               </StyledTeam>
                               <StyledButtons className={"buttons"}>
                                   <Button>{"查看詳情"}</Button>
