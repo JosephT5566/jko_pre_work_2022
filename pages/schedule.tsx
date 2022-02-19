@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from "react"
 
-import { useGetScheduleByMonth } from 'api/schedule';
+import TimeTable from "components/schedule/TimeTable"
+import TimeSelector from "components/schedule/TimeSelector"
+import { useGetScheduleByMonth } from "api/schedule"
 
 export default function Schedule() {
-	const { schedule } = useGetScheduleByMonth(1);
+    const [month, setMonth] = useState(1)
+    const { schedule } = useGetScheduleByMonth(month)
 
-    return(
-        <div>
-            {schedule? schedule.map((com)=>(
-                <div>{com.date}</div>
-            )):null }
-        </div>
+    return (
+        <>
+            <TimeSelector month={month} setMonth={setMonth} />
+            {schedule ? <TimeTable schedule={schedule} /> : "loading..."}
+        </>
     )
 }
