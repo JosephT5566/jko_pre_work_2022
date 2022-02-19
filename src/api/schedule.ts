@@ -21,6 +21,7 @@ export function useGetScheduleByMonth(month: number) {
 			);
 		};
 
+		setSchedule(undefined)
 		updateSchedule();
 	}, [month]);
 
