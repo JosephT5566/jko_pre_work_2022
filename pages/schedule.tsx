@@ -8,6 +8,7 @@ import { PageContainer } from "components/shared/Container"
 import { useGetScheduleByMonth } from "api/schedule"
 import { Competition } from "type/schedule"
 import { styled } from "@material-ui/core/styles"
+import moment from "moment"
 
 const ScheduleContainer = styled("div")({
     display: "flex",
@@ -16,11 +17,12 @@ const ScheduleContainer = styled("div")({
 })
 
 export default function Schedule() {
-    const [month, setMonth] = useState(1)
+    const [month, setMonth] = useState(moment().month())
     const { schedule } = useGetScheduleByMonth(month)
 
     const handleClickPurchase = (com: Competition) => {
         const { gameId, time, date } = com
+
         console.log({ gameId, date, time })
     }
 

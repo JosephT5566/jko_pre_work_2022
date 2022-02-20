@@ -28,7 +28,7 @@ const StyledTimeTable = styled("div")({
     padding: "1em",
     color: "white",
     borderRadius: "0.5em",
-    background: "#272934",
+    background: "linear-gradient(#322556, #272934 30%)",
 
     "& .date": {
         gridArea: "date",
@@ -63,6 +63,7 @@ const StyledTeam = styled("div")({
     "& .score": {
         gridArea: "score",
         textAlign: "end",
+        fontStyle: "italic",
     },
 })
 
