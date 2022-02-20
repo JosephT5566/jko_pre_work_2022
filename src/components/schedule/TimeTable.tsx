@@ -8,10 +8,14 @@ import Button from "components/based/button"
 const StyledTimeTableContainer = styled("div")({
     display: "flex",
     gap: "1em",
+    overflow: "scroll",
+    whiteSpace: "nowrap",
 })
 
 const StyledTimeTable = styled("div")({
     display: "grid",
+    minWidth: "300px",
+    flexShrink: 0,
     gridTemplateColumns: "1fr auto",
     gridTemplateRows: "auto auto auto auto",
     gridTemplateAreas: `
@@ -69,21 +73,24 @@ const StyledButtons = styled("div")({
 
 interface Props {
     schedule: Competition[]
+    onClickPurchase: (com: Competition) => void
 }
 
-export default function TimeTable({ schedule }: Props) {
+export default function TimeTable({ schedule, onClickPurchase }: Props) {
     return (
         <StyledTimeTableContainer>
             {schedule.length === 0
                 ? "無賽事"
                 : schedule.map((com) => {
-                      const date = moment(com.date)
+                      const date = moment(com.date, "YYYY-MM-DD")
+                      const time = moment(com.time, "hh:mm:ss")
+
                       return (
                           <StyledTimeTable>
                               <div className={"date"}>
                                   <div>{`${date.month() + 1}月${date.day()}日（${
                                       date.weekday() + 1
-                                  }）${date.hour()}:${date.minute()}`}</div>
+                                  }）${time.hour()}:${time.minute()}`}</div>
                                   <div>{com.place}</div>
                               </div>
                               <div className={"type"}>{com.type}</div>
@@ -101,7 +108,10 @@ export default function TimeTable({ schedule }: Props) {
                                   <Button>{"查看詳情"}</Button>
                                   <Button
                                       style={{
-                                          background: "red",
+                                          background: "#94263c",
+                                      }}
+                                      onClick={() => {
+                                          onClickPurchase(com)
                                       }}
                                   >
                                       {"訂購"}
