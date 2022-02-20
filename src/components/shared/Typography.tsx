@@ -7,6 +7,12 @@ export const H1 = styled("h1")({
     textAlign: "center",
 })
 
+export const H2 = styled("h1")({
+    margin: 0,
+    lineHeight: 1.15,
+    fontSize: "2rem",
+})
+
 export const Code = styled("code")({
     background: "#fafafa",
     borderRadius: "5px",
