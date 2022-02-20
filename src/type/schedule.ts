@@ -7,6 +7,7 @@ interface Team {
 export interface Competition {
     gameId: string
     date: string
+    time: string
     place: string
     type: string
     home: Team
