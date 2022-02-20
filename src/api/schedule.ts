@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import moment from "moment"
 import { v4 as uuidv4 } from "uuid"
 
@@ -28,11 +28,15 @@ export function useGetScheduleByMonth(month: number) {
 }
 
 const mockTeams = [
-    { name: "新竹街口工程獅", icon: "/images/logo1.png" },
-    { name: "新竹街口工程獅", icon: "/images/logo2.png" },
+    { name: "桃園領航猿", icon: "/images/logo1.png" },
+    { name: "福爾摩沙台新夢想家", icon: "/images/logo2.png" },
     { name: "新竹街口工程獅", icon: "/images/logo3.png" },
     { name: "台北富邦勇士", icon: "/images/logo4.png" },
 ]
+
+const mockScore = () => {
+    return Math.floor(Math.random() * 500)
+}
 
 const mockSchedule: Competition[] = [
     {
@@ -40,7 +44,55 @@ const mockSchedule: Competition[] = [
         date: moment("2022-02-21 13:30").format(),
         place: "桃園市立綜合體育館",
         type: "例行賽",
-        home: {...mockTeams[Math.floor(Math.random()*3)], score: 123 },
-        away: {...mockTeams[Math.floor(Math.random()*3)], score: 456 },
+        home: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+        away: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+    },
+    {
+        gameId: uuidv4(),
+        date: moment("2022-02-22 13:30").format(),
+        place: "桃園市立綜合體育館",
+        type: "例行賽",
+        home: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+        away: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+    },
+    {
+        gameId: uuidv4(),
+        date: moment("2022-02-23 13:30").format(),
+        place: "桃園市立綜合體育館",
+        type: "例行賽",
+        home: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+        away: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+    },
+    {
+        gameId: uuidv4(),
+        date: moment("2022-02-24 13:30").format(),
+        place: "桃園市立綜合體育館",
+        type: "例行賽",
+        home: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+        away: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+    },
+    {
+        gameId: uuidv4(),
+        date: moment("2022-03-01 13:30").format(),
+        place: "桃園市立綜合體育館",
+        type: "例行賽",
+        home: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+        away: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+    },
+    {
+        gameId: uuidv4(),
+        date: moment("2022-03-02 13:30").format(),
+        place: "桃園市立綜合體育館",
+        type: "例行賽",
+        home: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+        away: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+    },
+    {
+        gameId: uuidv4(),
+        date: moment("2022-03-21 13:30").format(),
+        place: "桃園市立綜合體育館",
+        type: "例行賽",
+        home: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
+        away: { ...mockTeams[Math.floor(Math.random() * 3)], score: mockScore() },
     },
 ]
