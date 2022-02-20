@@ -35,6 +35,7 @@ const StyledTimeTable = styled("div")({
     },
     "& .type": {
         gridArea: "type",
+        color: "#a6a3b1",
     },
     "& .home": {
         gridArea: "home",
@@ -88,10 +89,10 @@ export default function TimeTable({ schedule, onClickPurchase }: Props) {
                       return (
                           <StyledTimeTable>
                               <div className={"date"}>
-                                  <div>{`${date.month() + 1}月${date.day()}日（${
+                                  <div>{`${date.month() + 1}月${date.date()}日（${
                                       date.weekday() + 1
                                   }）${time.hour()}:${time.minute()}`}</div>
-                                  <div>{com.place}</div>
+                                  <div style={{ color: "#a6a3b1" }}>{com.place}</div>
                               </div>
                               <div className={"type"}>{com.type}</div>
                               <StyledTeam className={"home"}>
@@ -105,7 +106,13 @@ export default function TimeTable({ schedule, onClickPurchase }: Props) {
                                   <p className={"score"}>{com.away.score}</p>
                               </StyledTeam>
                               <StyledButtons className={"buttons"}>
-                                  <Button>{"查看詳情"}</Button>
+                                  <Button
+                                      style={{
+                                          background: "#393b4f",
+                                      }}
+                                  >
+                                      {"查看詳情"}
+                                  </Button>
                                   <Button
                                       style={{
                                           background: "#94263c",
