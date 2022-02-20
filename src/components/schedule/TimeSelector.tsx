@@ -5,8 +5,8 @@ import moment from "moment"
 const StyledTimeSelectorContainer = styled("div")({
     display: "flex",
     gap: "1em",
-    overflow: "scroll",
-    paddingBlock: "1em",
+    overflow: "auto",
+    paddingBottom: "1em",
 })
 
 const useStyles = makeStyles({

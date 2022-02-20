@@ -2,7 +2,7 @@ import React from "react"
 import { styled } from "@material-ui/core/styles"
 
 const StyledPageContainer = styled("div")({
-    padding: "0 2rem",
+    padding: "2rem",
 })
 
 export function PageContainer(props: { children: React.ReactNode }) {

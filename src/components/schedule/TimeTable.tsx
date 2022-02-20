@@ -8,7 +8,7 @@ import Button from "components/based/button"
 const StyledTimeTableContainer = styled("div")({
     display: "flex",
     gap: "1em",
-    overflow: "scroll",
+    overflow: "auto",
     whiteSpace: "nowrap",
 })
 
