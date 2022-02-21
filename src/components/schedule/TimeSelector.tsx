@@ -9,35 +9,36 @@ const StyledTimeSelectorContainer = styled("div")({
     paddingBottom: "1em",
 })
 
-const useStyles = makeStyles({
-    timeButton: {
-        display: "flex",
-        gap: "0.5em",
-        alignItems: "center",
-        padding: "1em",
-        border: "none",
-        borderRadius: "0.5em",
-        color: "white",
-        background: "#2f3140",
-        cursor: "pointer",
-        whiteSpace: "nowrap",
+const StyledTimeButton = styled("button")(() => ({
+    display: "flex",
+    gap: "0.5em",
+    alignItems: "center",
+    padding: "1em",
+    border: "none",
+    borderRadius: "0.5em",
+    color: "white",
+    background: "#2f3140",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
 
-        "&.active": {
-            background: "#381e4e",
-        },
-
-        "& .active-dot": {
-            height: "0.5em",
-            width: "0.5em",
-            backgroundColor: "red",
-            borderRadius: "50%",
-            display: "inline-block",
-            verticalAlign: "middle",
-
-            willChange: "transform",
-            animation: "$blinker 1s linear infinite",
-        },
+    "&.active": {
+        background: "#381e4e",
     },
+}))
+
+const useStyles = makeStyles({
+    activeDot: {
+        height: "0.5em",
+        width: "0.5em",
+        backgroundColor: "red",
+        borderRadius: "50%",
+        display: "inline-block",
+        verticalAlign: "middle",
+
+        willChange: "transform",
+        animation: "$blinker 1s linear infinite",
+    },
+
     "@keyframes blinker": {
         "50%": {
             opacity: 0,
@@ -64,16 +65,16 @@ export default function TimeSelector({ month, setMonth }: Props) {
             {genMonthes().map((mon, index) => {
                 const active = month === mon.month()
                 return (
-                    <button
-                        className={`${classes.timeButton} ${active ? "active" : ""}`}
+                    <StyledTimeButton
+                        className={`${active ? "active" : ""}`}
                         onClick={() => {
                             handleClickButton(mon.month())
                         }}
                         key={index}
                     >
-                        {active && <span className="active-dot"></span>}
+                        {active && <span className={classes.activeDot} />}
                         {`${mon.year()}年${mon.month() + 1}月`}
-                    </button>
+                    </StyledTimeButton>
                 )
             })}
         </StyledTimeSelectorContainer>
