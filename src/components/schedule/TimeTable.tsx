@@ -83,12 +83,12 @@ export default function TimeTable({ schedule, onClickPurchase }: Props) {
         <StyledTimeTableContainer>
             {schedule.length === 0
                 ? "無賽事"
-                : schedule.map((com) => {
+                : schedule.map((com, index) => {
                       const date = moment(com.date, "YYYY-MM-DD")
                       const time = moment(com.time, "hh:mm:ss")
 
                       return (
-                          <StyledTimeTable>
+                          <StyledTimeTable key={index}>
                               <div className={"date"}>
                                   <div>{`${date.month() + 1}月${date.date()}日（${
                                       date.weekday() + 1
