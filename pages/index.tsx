@@ -1,37 +1,32 @@
+import { useState } from "react"
 import type { NextPage } from "next"
 import Head from "next/head"
-import { useRouter } from "next/router"
 import { styled } from "@material-ui/core/styles"
+import moment from "moment"
 
 import { PageContainer } from "components/shared/Container"
-import { H1 } from "components/shared/Typography"
-import { Card } from "components/shared/Card"
+import { H2 } from "components/shared/Typography"
+import TimeTable from "components/schedule/TimeTable"
+import TimeSelector from "components/schedule/TimeSelector"
 
-const MainContainer = styled("main")({
-    minHeight: "100vh",
-    padding: "4rem 0",
-    flex: 1,
+import { useGetScheduleByMonth } from "api/schedule"
+import { Competition } from "type/schedule"
+
+const ScheduleContainer = styled("div")({
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    gap: "1rem",
 })
 
-const CardsContainer = styled("div")(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    maxWidth: "800px",
-
-    [theme.breakpoints.down("sm")]: {
-        width: "100%",
-        flexDirection: "column",
-    },
-}))
-
 const Home: NextPage = () => {
-    const router = useRouter()
+    const [month, setMonth] = useState(moment().month())
+    const { schedule } = useGetScheduleByMonth(month)
+
+    const handleClickPurchase = (com: Competition) => {
+        const { gameId, time, date } = com
+
+        console.log({ gameId, date, time })
+    }
 
     return (
         <PageContainer>
@@ -41,19 +36,18 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <MainContainer>
-                <H1>Home page</H1>
-
-                <CardsContainer>
-                    <Card
-                        onClick={() => {
-                            router.push("/schedule")
-                        }}
-                    >
-                        <h2>時刻表 &rarr;</h2>
-                    </Card>
-                </CardsContainer>
-            </MainContainer>
+            <ScheduleContainer>
+                <H2>賽程表</H2>
+                <TimeSelector month={month} setMonth={setMonth} />
+                {schedule ? (
+                    <TimeTable
+                        schedule={schedule}
+                        onClickPurchase={handleClickPurchase}
+                    />
+                ) : (
+                    "loading..."
+                )}
+            </ScheduleContainer>
         </PageContainer>
     )
 }
